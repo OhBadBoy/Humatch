@@ -1,0 +1,74 @@
+@startuml Class
+
+' Classe représentant une adresse postale, utilisée par les entreprises et les personnes
+class adresse {
+  +id: PK                ' Identifiant unique de l'adresse (clé primaire)
+  -ligne: VARCHAR       ' Première ligne de l'adresse
+  -code_postal: VARCHAR  ' Code postal
+  -ville: VARCHAR        ' Ville
+  -region: VARCHAR       ' Région
+  -pays: VARCHAR         ' Pays
+}
+
+' Classe représentant une annonce d'emploi publiée par une entreprise
+class annonce {
+  +id: PK                   ' Identifiant unique de l'annonce (clé primaire)
+  -titre: VARCHAR           ' Titre de l'annonce
+  -description: TEXT        ' Description détaillée du poste
+  -date_publication: DATE   ' Date de publication de l'annonce
+  -date_expiration: DATE    ' Date d'expiration de l'annonce
+  -type_contrat: VARCHAR    ' Type de contrat proposé (CDI, CDD, etc.)
+  -salaire: FLOAT           ' Salaire proposé
+  -entreprise_id: FK        ' Référence à l'entreprise qui publie l'annonce
+  -adresse_id: FK           ' Référence à l'adresse du poste
+}
+
+' Classe représentant une entreprise qui publie des annonces
+class entreprise {
+  +id: PK                      ' Identifiant unique de l'entreprise (clé primaire)
+  -nom: VARCHAR                ' Nom de l'entreprise
+  -description: TEXT           ' Description de l'entreprise
+  -secteur_activite: VARCHAR   ' Secteur d'activité de l'entreprise
+  -adresse_id: FK              ' Référence à l'adresse du siège social
+}
+
+' Classe représentant une personne (candidat)
+class personne {
+  +id: PK                ' Identifiant unique de la personne (clé primaire)
+  -nom: VARCHAR          ' Nom de famille
+  -prenom: VARCHAR       ' Prénom
+  -email: VARCHAR        ' Adresse email
+  -telephone: VARCHAR    ' Numéro de téléphone
+  -adresse_id: FK        ' Référence à l'adresse de la personne
+}
+
+' Classe représentant une candidature à une annonce
+class candidature {
+  +id: PK                       /* Identifiant unique de la candidature (clé primaire)*/
+  -date_candidature: DATE      ' Date de soumission de la candidature' 
+  -statut: VARCHAR             ' Statut de la candidature (en attente, acceptée, refusée, etc.)' 
+  -cv: TEXT                    ' CV du candidat' 
+  -lettre_motivation: TEXT     ' Lettre de motivation' 
+  -personne_id: FK             ' Référence à la personne candidate' 
+  -annonce_id: FK              ' Référence à l'annonce concernée' 
+}
+
+' Une adresse peut être liée à plusieurs entreprises (adresse du siège)
+adresse "1" -- "0..*" entreprise : habite
+
+' Une entreprise peut publier plusieurs annonces
+entreprise "1" -- "0..*" annonce : publie
+
+' Une adresse peut être liée à plusieurs personnes (adresse personnelle)
+adresse "1" -- "0..*" personne : habite
+
+' Une personne peut soumettre plusieurs candidatures
+personne "1" -- "0..*" candidature : soumet
+
+' Une annonce peut recevoir plusieurs candidatures
+annonce "1" -- "0..*" candidature : recoit
+
+' Une annonce est localisée à une adresse (optionnelle)
+annonce "0..1" -- "1" adresse : localisee
+
+@enduml

@@ -1,6 +1,12 @@
+<div align="center">
+
 # Humatch
 
-Job board pour connecter étudiants et entreprises : API REST en Python (Flask) et base de données MySQL.
+**Job board pour connecter étudiants et entreprises**
+
+`Python` `Flask` `SQLAlchemy` `MySQL` `JWT`
+
+</div>
 
 > **Contexte.** Projet scolaire d'équipe (Epitech, 2025). Ce dépôt reprend le backend et la base de données du projet ; l'interface web (HTML, CSS, JavaScript) n'y figure pas, et l'historique détaillé de l'équipe non plus.
 
@@ -15,13 +21,13 @@ Je ne me suis pas attribué l'API dans son ensemble ni l'interface.
 ## Ce que fait l'API
 
 - Inscription et connexion par jeton JWT ; mots de passe hachés avec bcrypt.
-- Gestion des entreprises et des annonces (création, consultation, modification, suppression).
+- Gestion des entreprises et des annonces : création, consultation, modification, suppression.
 - Dépôt de candidatures et suivi de leur statut (`received`, `in_review`, `rejected`, `accepted`).
 
 ## Contenu du dépôt
 
 | Chemin | Rôle |
-|---|---|
+|:--|:--|
 | `backend/api_python/` | API Flask : `app.py` (application et blueprints), configuration, modèles SQLAlchemy, routes |
 | `backend/requirements.txt` | Dépendances Python (voir « Limites connues ») |
 | `backend/analyse/class.plantuml` | Diagramme de classes (PlantUML) du modèle initial, en français |
@@ -72,15 +78,16 @@ erDiagram
 ## Routes de l'API
 
 | Ressource | Routes | Méthodes | Authentification |
-|---|---|---|---|
-| Santé | `/`, `/health` | GET | non |
-| Comptes | `/auth/register`, `/auth/login`, `/auth/me` | POST, POST, GET | jeton JWT pour `/auth/me` |
-| Entreprises | `/companies`, `/companies/<id>` | GET, POST, PUT, DELETE | non |
-| Personnes | `/people` | GET | non |
-| Annonces | `/advertisements`, `/advertisements/<id>` | GET, POST, PUT, DELETE | jeton facultatif à la création |
-| Candidatures | `/application`, `/application/<id>` | GET, POST, PUT, DELETE | non |
+|:--|:--|:--|:--|
+| **Santé** | `/`, `/health` | GET | non |
+| **Comptes** | `/auth/register`, `/auth/login`, `/auth/me` | POST, POST, GET | jeton JWT pour `/auth/me` |
+| **Entreprises** | `/companies`, `/companies/<id>` | GET, POST, PUT, DELETE | non |
+| **Personnes** | `/people` | GET | non |
+| **Annonces** | `/advertisements`, `/advertisements/<id>` | GET, POST, PUT, DELETE | jeton facultatif à la création |
+| **Candidatures** | `/application`, `/application/<id>` | GET, POST, PUT, DELETE | non |
 
-## Démarrage en local
+<details>
+<summary><b>Démarrage en local</b> : Python, MySQL, Flask</summary>
 
 Prérequis : Python et MySQL 8 (versions testées : Python 3.12, MySQL 8.4).
 
@@ -111,6 +118,8 @@ curl http://localhost:5000/health
 curl -X POST http://localhost:5000/auth/register -H "Content-Type: application/json" \
   -d '{"first_name":"Alice","last_name":"Martin","email":"alice@example.com","password":"MotDePasse123"}'
 ```
+
+</details>
 
 ## Limites connues
 

@@ -8,7 +8,7 @@
 
 </div>
 
-> **Contexte.** Projet scolaire d'équipe (Epitech, 2025). Ce dépôt reprend le backend et la base de données du projet ; l'interface web (HTML, CSS, JavaScript) n'y figure pas, et l'historique détaillé de l'équipe non plus.
+> **Contexte.** Projet d'équipe réalisé pendant ma formation (2025). Ce dépôt reprend le backend et la base de données du projet ; l'interface web (HTML, CSS, JavaScript) n'y figure pas, et l'historique détaillé de l'équipe non plus.
 
 ## Ma contribution
 
